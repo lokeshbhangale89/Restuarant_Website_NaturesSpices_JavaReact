@@ -1,0 +1,26 @@
+.banner-img {
+    height: 100vh;
+    background-image: url('../../../assets/home.webp');
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+    position: relative;
+    filter: brightness(0.6);
+    /* width:100%; */
+}
+
+.text-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-container p {
+    font-size: 20px;
+}

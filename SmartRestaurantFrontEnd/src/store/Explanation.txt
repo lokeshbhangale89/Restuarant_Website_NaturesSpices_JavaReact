@@ -1,0 +1,5 @@
+here we used redux toolkit with redux thunk to acheive asynchronous operation
+
+in slice file, this reducer is to update synchronous state and extrareducer is used to update async state like data coming from api
+
+The fetchFoodItemsData.rejected and fetchFoodItemsData.fulfilled are Redux action types that are automatically generated when you use createAsyncThunk in Redux Toolkit. These are not part of the API response

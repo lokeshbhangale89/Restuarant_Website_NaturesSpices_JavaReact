@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface FoodItemRepository extends MongoRepository<FoodItem, String> {
 
-    FoodItem findByProductId(int productId);
+    FoodItem findByProductId(String productId);
 
     @Query("{ 'name': { $regex: ?0, $options: 'i' } }")
     List<FoodItem> findByNameSimilar(String searchTerm);

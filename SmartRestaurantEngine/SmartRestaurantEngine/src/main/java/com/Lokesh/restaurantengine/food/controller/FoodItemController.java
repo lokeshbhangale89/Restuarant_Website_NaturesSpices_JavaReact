@@ -41,13 +41,13 @@ public class FoodItemController {
     // GET BY PRODUCT ID
     @GetMapping("/product/{productId}")
     public ResponseEntity<FoodItemResponse> getByProductId(
-            @PathVariable int productId) {
+            @PathVariable String productId) {
         return ResponseEntity.ok(service.getByProductId(productId));
     }
 
     // DELETE
     @DeleteMapping("/{productId}")
-    public ResponseEntity<Void> deleteByProductId(@PathVariable int productId) {
+    public ResponseEntity<Void> deleteByProductId(@PathVariable String productId) {
         service.deleteByProductId(productId);
         return ResponseEntity.noContent().build();
     }

@@ -83,7 +83,7 @@ public class AuthController {
 
         // 4. Create cookies
         ResponseCookie jwtCookie = ResponseCookie.from("access_token", token)
-                .httpOnly(true)        // JS cannot access
+                .httpOnly(false)        // JS cannot access // set this to true after dev testing.
                 .secure(false)         // true if HTTPS
                 .path("/")             // cookie sent to all endpoints
                 .maxAge(15 * 60)       // 15 minutes

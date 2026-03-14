@@ -8,7 +8,7 @@ import lombok.Data;
 public class FoodItemResponse {
 
     private String id;
-    private int productId;
+    private String productId;
     private String name;
     private double price;
     private String image;

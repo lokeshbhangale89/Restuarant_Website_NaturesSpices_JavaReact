@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class FoodItemRequest {
 
-    private int productId;
+    private String productId;
     private String name;
     private double price;
     private String image;

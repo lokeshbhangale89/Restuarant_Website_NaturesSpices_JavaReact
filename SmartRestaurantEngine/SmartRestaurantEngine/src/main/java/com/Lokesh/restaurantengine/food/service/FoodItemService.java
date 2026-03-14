@@ -52,7 +52,7 @@ public class FoodItemService {
     }
 
     // GET BY PRODUCT ID
-    public FoodItemResponse getByProductId(int productId) {
+    public FoodItemResponse getByProductId(String productId) {
         FoodItem item = repository.findByProductId(productId);
         if (item == null) {
             throw new ResourceNotFoundException(
@@ -62,7 +62,7 @@ public class FoodItemService {
     }
 
     // DELETE BY PRODUCT ID
-    public void deleteByProductId(int productId) {
+    public void deleteByProductId(String productId) {
         FoodItem item = repository.findByProductId(productId);
         if(item == null) {
             throw new ResourceNotFoundException(

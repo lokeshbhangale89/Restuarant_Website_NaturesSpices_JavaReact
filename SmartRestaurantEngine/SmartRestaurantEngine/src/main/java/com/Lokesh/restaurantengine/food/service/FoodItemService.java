@@ -8,6 +8,7 @@ import com.Lokesh.restaurantengine.food.entity.FoodItem;
 import com.Lokesh.restaurantengine.food.repository.FoodItemRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -73,7 +74,13 @@ public class FoodItemService {
 
     // SEARCH
     public List<FoodItemResponse> search(String term) {
-        return repository.findByNameSimilar(term)
+        if (term == null || term.isBlank()) return List.of();
+
+        // "how is biryani" → "how|is|biryani"
+        String regex = Arrays.stream(term.trim().split("\\s+"))
+                .collect(Collectors.joining("|"));
+
+        return repository.findByNameSimilar(regex)
                 .stream()
                 .map(this::mapToResponse)
                 .collect(Collectors.toList());

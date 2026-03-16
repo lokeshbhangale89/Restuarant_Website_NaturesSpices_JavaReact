@@ -127,7 +127,7 @@ const Cart = () => {
                   amount={cartTotal * 100}
                   currency="INR"
                   token={handleOrder}
-                  stripeKey="pk_test_51N64ktSFjaOjTvLHvtGvpsfUND2VKXlL6uf3a33Y4jhPpUVjswE4BUTi6AMu2SkEtJGktXopdQy6rnnUWBVnzavj00vsh9SXF6"
+                  stripeKey=""
                   disabled={!isFormValid}
                 />
               </div>

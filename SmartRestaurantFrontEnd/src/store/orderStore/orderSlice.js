@@ -37,17 +37,17 @@ export const fetchOrders = () => async (dispatch) => {
   }
 };
 
-export const createOrder = (orderData) => async (dispatch) => {
-  dispatch(setLoading(true));
-  try {
-    await createOrderAPI(orderData);
-    const updatedOrders = await fetchOrdersAPI(); 
-    dispatch(setOrders(updatedOrders));
-  } catch (error) {
-    dispatch(setError(error.message));
-  } finally {
-    dispatch(setLoading(false));
-  }
-};
+// export const createOrder = (orderData) => async (dispatch) => {
+//   dispatch(setLoading(true));
+//   try {
+//     await createOrderAPI(orderData);
+//     const updatedOrders = await fetchOrdersAPI(); 
+//     dispatch(setOrders(updatedOrders));
+//   } catch (error) {
+//     dispatch(setError(error.message));
+//   } finally {
+//     dispatch(setLoading(false));
+//   }
+// };
 
 export default orderSlice.reducer;

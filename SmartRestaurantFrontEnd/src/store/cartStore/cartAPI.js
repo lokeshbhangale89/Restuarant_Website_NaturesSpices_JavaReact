@@ -1,14 +1,6 @@
 import axios from 'axios';
-import jwt_decode from 'jwt-decode';
 import { getCookie } from '../../cookie';
 import { isloggedIn } from '../../utils/utils';
-
-const getUserID = () => {
-  const accessToken = getCookie('access_token');
-  if (!accessToken) return null;
-  const decoded = jwt_decode(accessToken);
-  return decoded._id;
-};
 
 export const fetchCartItemsAPI = async () => {
   ;
@@ -53,30 +45,31 @@ export const removeProductFromCartAPI = async (productId) => {
 };
 
 export const removeAllFromCartAPI = async () => {
-  const userID = getUserID();
-  if (!userID) {
+  if (!isloggedIn()) {
     console.warn("User is not logged in. Cannot remove all items from cart.");
     return null;
   }
 
-  const response = await axios.delete('http://localhost:4000/api/carts/removeallfromcart', {
-    params: { _id: userID, accessToken: getCookie('access_token') },
+  const response = await axios.delete('http://localhost:4000/api/cart/clear',{
+    withCredentials: true
   });
   return response.data;
 };
 
 export const createOrderAPI = async (orderData) => {
-  const userID = getUserID();
-  if (!userID) {
+
+  if (!isloggedIn()) {
     console.warn("User is not logged in. Cannot create an order.");
     return null;
   }
   console.log(orderData, "orderdataa")
 
-  const response = await axios.post('http://localhost:4000/api/orders/createorders', {
-    userID,
-    ...orderData,
-    accessToken: getCookie('access_token'),
+  const response = await axios.post('http://localhost:4000/api/orders/createorders', 
+  {
+    ...orderData
+  }, 
+  {
+    withCredentials: true
   });
   return response.data;
 };

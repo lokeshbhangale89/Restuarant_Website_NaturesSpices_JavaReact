@@ -20,14 +20,14 @@ export const fetchOrdersAPI = async () => {
 };
 
 // Create new order
-export const createOrderAPI = async (orderData) => {
-  try {
-    const response = await api.post('/orders/createorders', orderData);
-    return response.data;
-  } catch (error) {
-    if (error.response && error.response.status === 401) {
-      throw new Error('User is not logged in.');
-    }
-    throw error;
-  }
-};
+// export const createOrderAPI = async (orderData) => {
+//   try {
+//     const response = await api.post('/orders/createorders', orderData);
+//     return response.data;
+//   } catch (error) {
+//     if (error.response && error.response.status === 401) {
+//       throw new Error('User is not logged in.');
+//     }
+//     throw error;
+//   }
+// };

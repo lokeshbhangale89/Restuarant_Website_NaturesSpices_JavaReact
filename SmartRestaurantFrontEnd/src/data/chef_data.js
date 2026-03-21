@@ -1,7 +1,7 @@
 import cheflokesh from "../assets/OurChefs/chef_1.jpg";
-import chefaman from "../assets/OurChefs/chef_2.jpg";
-import chefjayant from "../assets/OurChefs/chef_3.jpg";
-import chefShruti from "../assets/OurChefs/chef_4.jpg";
+import chefkaran from "../assets/OurChefs/chef_2.jpg";
+import chefrahul from "../assets/OurChefs/chef_3.jpg";
+import chefashwin from "../assets/OurChefs/chef_4.jpg";
 
 const chefs = [
     {
@@ -13,24 +13,24 @@ const chefs = [
     },
     {
         id: 2,
-        name: "Aman Sharma",
+        name: "Karan Sharma",
         position: "Head Chef",
         description: "An Mastermind behind our cultinary creations, uses his expertise to deliver exceptional dishes to our guests",
-        image: chefaman,
+        image: chefkaran,
     },
     {
         id: 3,
-        name: "Jayanti Ravishankar",
+        name: "Rahul Gupta",
         position: "Deputy Chef",
         description: "An Mastermind behind our cultinary creations, uses his expertise to deliver exceptional dishes to our guests",
-        image: chefjayant,
+        image: chefrahul,
     },
     {
         id: 4,
-        name: "Shruti Hirapure",
+        name: "Ashwin Patel",
         position: "Junior Chef",
         description: "An Mastermind behind our cultinary creations, uses his expertise to deliver exceptional dishes to our guests",
-        image: chefShruti,
+        image: chefashwin,
     },
 ];
 

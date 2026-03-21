@@ -75,11 +75,9 @@ const Cart = () => {
             <div>Error: {error}</div>
           ) : cartItems.length === 0 ? (
             <div className="text-center">Your cart is empty</div>
-          ) : (
-            cartItems.map((item) => (
-              <CartItem key={item._id} fooditem={item} onRemoveFromCart={handleRemoveFromCart} />
-            ))
-          )}
+          ) : cartItems.map((item) => (
+            <CartItem key={item._id} fooditem={item} quantity={item.quantity} onRemoveFromCart={handleRemoveFromCart} />
+          ))}
         </div>
         <div className="col-12 col-md-4">
           <div className="card">

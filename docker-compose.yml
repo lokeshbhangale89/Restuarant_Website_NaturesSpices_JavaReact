@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+
+  # we no need to add image for mongo if we use mongodb atlas cloud database, 
+  # but for local development we can use mongo image
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  backend:
+    build: ./SmartRestaurantEngine/SmartRestaurantEngine
+    container_name: backend
+    ports:
+      - "4000:4000"
+    depends_on:
+      - mongodb
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://mongodb:27017/restaurant_JavaReact
+
+  frontend:
+    build: ./SmartRestaurantFrontEnd
+    container_name: frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  mongo-data:

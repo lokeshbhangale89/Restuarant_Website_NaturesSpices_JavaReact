@@ -1,0 +1,29 @@
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# IDEs
+.vscode/
+.idea/
+*.iml
+
+# Environment variables
+.env*
+application-local.yml
+application-dev.yml
+
+# Test output
+surefire-reports/
+failsafe-reports/

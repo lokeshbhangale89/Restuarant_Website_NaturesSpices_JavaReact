@@ -64,7 +64,7 @@ const SubHeaderSearch = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
-            <button className="btn btn-outline-light" type="submit">
+            <button className="btn btn-outline-light" type="submit" onClick={handleSearch}>
               Search
             </button>
           </form>

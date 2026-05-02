@@ -1,0 +1,26 @@
+/* Default button */
+.ai-open-btn {
+  border: none;
+  background: linear-gradient(135deg, #7c6853, #4e3b2a);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 25px;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.ai-open-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Icon button */
+.ai-open-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  font-size: 20px;
+  background: linear-gradient(135deg, #7c6853, #4e3b2a);
+  color: white;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}

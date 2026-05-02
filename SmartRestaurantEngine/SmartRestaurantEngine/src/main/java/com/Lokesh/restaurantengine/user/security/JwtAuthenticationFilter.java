@@ -40,50 +40,44 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             try {
                 Claims claims = jwtProvider.getClaims(token);
 
-                String email = claims.get("name", String.class);
+                // ✅ Extract correct fields
+                String userId = claims.get("id", String.class);
                 String role = claims.get("role", String.class);
 
-                if (email != null && role != null) {
+                if (userId != null && role != null) {
+
                     UsernamePasswordAuthenticationToken auth =
                             new UsernamePasswordAuthenticationToken(
-                                    email,
+                                    userId, // ✅ Mongo _id used as principal
                                     null,
-                                    List.of(new SimpleGrantedAuthority("ROLE_" + role.toUpperCase()))
+                                    List.of(new SimpleGrantedAuthority(role)) // ✅ no ROLE_ duplication
                             );
 
                     SecurityContextHolder.getContext().setAuthentication(auth);
-                    log.debug("JWT valid - set authentication for user='{}' role='{}' path='{}'", email, role, request.getRequestURI());
-                } else {
-                    log.debug("JWT missing expected claims (name/role) - path='{}'", request.getRequestURI());
+
+                    log.debug("JWT valid - userId='{}', role='{}', path='{}'",
+                            userId, role, request.getRequestURI());
                 }
+
             } catch (Exception ex) {
-                // invalid token -> do not set authentication
                 log.debug("JWT validation failed for path='{}': {}", request.getRequestURI(), ex.getMessage());
             }
-        } else {
-            log.debug("No JWT token found for path='{}'", request.getRequestURI());
         }
 
         filterChain.doFilter(request, response);
     }
 
     private String extractToken(HttpServletRequest request) {
-        // 1. Try Authorization header (Bearer ...)
+
         String header = request.getHeader("Authorization");
         if (header != null && header.startsWith("Bearer ")) {
-            log.debug("Found token in Authorization header for path='{}'", request.getRequestURI());
             return header.substring(7);
         }
 
-        // 2. Try cookie named access_token
         if (request.getCookies() != null) {
             for (Cookie c : request.getCookies()) {
                 if ("access_token".equals(c.getName())) {
-                    String value = c.getValue();
-                    if (value != null && !value.trim().isEmpty()) {
-                        log.debug("Found token in cookie 'access_token' for path='{}'", request.getRequestURI());
-                        return value;
-                    }
+                    return c.getValue();
                 }
             }
         }

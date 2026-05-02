@@ -11,6 +11,7 @@ import com.Lokesh.restaurantengine.food.entity.FoodItem;
 import com.Lokesh.restaurantengine.food.repository.FoodItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.dao.DuplicateKeyException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +30,21 @@ public class CartService {
             throw new BadRequestException("ProductId cannot be null");
         }
 
-        Cart cart = cartRepository.findByUserId(userId)
-                .orElseGet(() -> Cart.builder()
-                        .userId(userId)
-                        .products(new ArrayList<>())
-                        .build());
+        Cart cart;
+
+        try {
+            cart = cartRepository.findByUserId(userId)
+                    .orElseGet(() -> cartRepository.save(
+                            Cart.builder()
+                                    .userId(userId)
+                                    .products(new ArrayList<>())
+                                    .build()
+                    ));
+        } catch (DuplicateKeyException e) {
+            // another request created cart at same time
+            cart = cartRepository.findByUserId(userId)
+                    .orElseThrow(() -> new RuntimeException("Cart fetch failed after duplicate key"));
+        }
 
         CartItem item = cart.getProducts().stream()
                 .filter(p -> Objects.equals(p.getProductId(), request.getProductId()))

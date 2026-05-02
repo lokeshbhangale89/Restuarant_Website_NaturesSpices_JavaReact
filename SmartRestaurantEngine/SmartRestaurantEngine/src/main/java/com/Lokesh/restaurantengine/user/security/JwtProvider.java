@@ -21,11 +21,11 @@ public class JwtProvider {
         return Keys.hmacShaKeyFor(jwtSecret.getBytes());
     }
 
-    public String generateToken(String userId, String role, String name) {
+    public String generateToken(String userId, String role, String email) {
         return Jwts.builder()
-                .claim("id", userId)
+                .claim("id", userId)     // ✅ Mongo _id
                 .claim("role", role)
-                .claim("name", name)
+                .claim("name", email)   // optional
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationMs))
                 .signWith(key(), SignatureAlgorithm.HS256)

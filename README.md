@@ -207,8 +207,8 @@ Ensure MongoDB and Redis are running locally, or update `application.properties`
 - `GET /api/orders/{id}` - Get order details
 
 ### AI Search
-- `GET /api/search/smart` - AI-powered food search
-- `POST /api/ai/assistant` - Interact with AI assistant
+- `GET /api/fooditems/search` - AI-powered food search
+- `POST /api/ai/chat` - Interact with AI assistant
 
 ## 👨‍💻 Developer
 
